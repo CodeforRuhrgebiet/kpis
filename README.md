@@ -1,3 +1,3 @@
 # Code for Ruhrgebiet KPIs
 
-Auf der Mailingliste eingetragen: **25**
+Auf der Mailingliste eingetragen: **26**
