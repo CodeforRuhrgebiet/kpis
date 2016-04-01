@@ -1,6 +1,15 @@
 ---
-meetup:
-  api_key: 'put-meetup-key-here'
 mailinglist:
+  mailman_listinfo_url: 'https://lists.okfn.org/mailman/listinfo/codeforruhrgebiet'
+  slug: 'codeforruhrgebiet'
   email: 'your-email-address-in-mailinglist'
   password: 'your-mailinglist-password'
+meetup:
+  api_key: 'put-meetup-key-here'
+  group_slug: 'OK-Lab-Ruhrgebiet'
+twitter:
+  consumer_key: 'consumer_key here'
+  consumer_secret: 'consumer_secret here'
+  access_token: 'access_token here'
+  access_token_secret: 'access_token_secret here'
+  screen_name: 'codeforruhr'

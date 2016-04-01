@@ -8,6 +8,7 @@ class DataCollector
   def fetch!
     @mailinglist = Mailinglist.stats
     @meetup = Meetup.stats
+    @twitter = TwitterAccount.stats
   end
 
   def save_to_file!

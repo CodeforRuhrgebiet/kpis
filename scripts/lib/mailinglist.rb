@@ -4,8 +4,8 @@ class Mailinglist
     members_digested_count = false
 
     a = Mechanize.new
-    a.get('https://lists.okfn.org/mailman/listinfo/codeforruhrgebiet') do |page|
-      mailinglist_page = page.form_with(action: '../roster/codeforruhrgebiet') do |f|
+    a.get(@@config['mailinglist']['mailman_listinfo_url']) do |page|
+      mailinglist_page = page.form_with(action: "../roster/#{@@config['mailinglist']['slug']}") do |f|
         f.field_with(name: 'roster-email').value = @@config['mailinglist']['email']
         f.field_with(name: 'roster-pw').value = @@config['mailinglist']['password']
       end.click_button

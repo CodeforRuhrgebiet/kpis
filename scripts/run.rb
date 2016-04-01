@@ -5,6 +5,7 @@ require 'json'
 require 'erb'
 require 'yaml'
 require 'colorize'
+require 'twitter'
 
 project_root = File.expand_path('..', File.dirname(__FILE__))
 Dir["#{project_root}/scripts/lib/*.rb"].each {|file| require file }
