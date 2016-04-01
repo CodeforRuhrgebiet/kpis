@@ -1,0 +1,6 @@
+---
+meetup:
+  api_key: 'put-meetup-key-here'
+mailinglist:
+  email: 'your-email-address-in-mailinglist'
+  password: 'your-mailinglist-password'

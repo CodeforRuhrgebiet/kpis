@@ -1,10 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorize (0.7.7)
     domain_name (0.5.20160309)
       unf (>= 0.0.5, < 1.0.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    json (1.8.3)
     mechanize (2.7.4)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
@@ -30,4 +32,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
+  json
   mechanize
+  nokogiri
