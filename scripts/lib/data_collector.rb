@@ -9,6 +9,7 @@ class DataCollector
     @mailinglist = Mailinglist.stats
     @meetup = Meetup.stats
     @twitter = TwitterAccount.stats
+    @facebook = Facebook.stats
   end
 
   def save_to_file!

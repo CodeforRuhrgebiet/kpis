@@ -6,6 +6,4 @@ Mitglieder in der Meetup-Gruppe: **40**
 
 Twitter Followers: **49**
 
-## TODO
-
-* Facebook Likes
+Facebook Page Likes: **16**

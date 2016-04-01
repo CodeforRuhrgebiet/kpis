@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'open-uri'
+require 'nokogiri'
 require 'json'
 require 'erb'
 require 'yaml'
