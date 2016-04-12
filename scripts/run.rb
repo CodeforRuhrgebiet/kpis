@@ -32,7 +32,6 @@ puts "This operation took #{delta} seconds which are #{(delta / 60).round(2)} mi
 if autocommit?
   puts 'Publishing..'.yellow
   res = system( "cd #{project_root} && git add --all && git commit -m \"update kpis\" && git push origin master" )
-  puts res
   if res
     puts 'Published!!! :)'.blue
   else
