@@ -8,11 +8,6 @@ require 'yaml'
 require 'colorize'
 require 'twitter'
 require 'logger'
-require 'git'
-
-def autocommit?
-  ARGV[0] == "autocommit" ? true : false
-end
 
 project_root = File.expand_path('..', File.dirname(__FILE__))
 Dir["#{project_root}/scripts/lib/*.rb"].each {|file| require file }
@@ -28,15 +23,5 @@ puts 'DONE!!! :)'.blue
 script_end_time = Time.now
 delta = script_end_time - script_start_time
 puts "This operation took #{delta} seconds which are #{(delta / 60).round(2)} minutes.".light_cyan
-
-if autocommit?
-  puts 'Publishing..'.yellow
-  res = system( "cd #{project_root} && git add --all && git commit -m \"update kpis\" && git push origin master" )
-  if res
-    puts 'Published!!! :)'.blue
-  else
-    puts 'Failed pushing!!! :)'.red
-  end
-end
 
 exit
