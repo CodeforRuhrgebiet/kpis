@@ -7,6 +7,7 @@ require 'erb'
 require 'yaml'
 require 'colorize'
 require 'twitter'
+require 'logger'
 require 'git'
 
 conjob? = ARGV[0] == "autocommit"
