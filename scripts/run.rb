@@ -31,19 +31,13 @@ puts "This operation took #{delta} seconds which are #{(delta / 60).round(2)} mi
 
 if autocommit?
   puts 'Publishing..'.yellow
-
-  # g = Git.open(project_root, log: Logger.new(STDOUT))
-  # puts g.repo
-  # g.config('user.name', 'Martin Schurig')
-  # g.config('user.email', 'martin@schurig.pw')
-
-  res = system( "cd #{project_root} && git add --all && git push origin master" )
+  res = system( "cd #{project_root} && git add --all && git commit -m \"update kpis\" && git push origin master" )
   puts res
-  # puts g.status
-  # g.add(all: true)
-  # g.commit_all('update kpis')
-  # g.push
-  puts 'Published!!! :)'.blue
+  if res
+    puts 'Published!!! :)'.blue
+  else
+    puts 'Failed pushing!!! :)'.red
+  end
 end
 
 exit
