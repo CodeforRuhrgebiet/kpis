@@ -1,5 +1,6 @@
 class DataCollector
   require 'firebase'
+  require 'firebase_token_generator'
 
   include ERB::Util
 
@@ -15,6 +16,11 @@ class DataCollector
 
   def track!
     base_uri = 'https://code-for-ruhrgebiet.firebaseio.com/'
+
+    payload = { uid: @@config['firebase']['user_uuid'], password: @@config['firebase']['user_password']}
+    generator = Firebase::FirebaseTokenGenerator.new(@@config['firebase']['secret'])
+    @firebase_jwt = generator.create_token(payload)
+
     firebase = Firebase::Client.new(base_uri)
     push_to_firebase!(firebase, 'meetup', @meetup)
     push_to_firebase!(firebase, 'mailinglist', @mailinglist)
@@ -54,14 +60,14 @@ class DataCollector
       if current_day_entry_res
         puts 'Updating day value..'
         node = current_day_entry_res.first
-        firebase.update("kpis/#{key}/#{node}", date_data.merge(data))
+        puts "#{firebase.update("kpis/#{key}/#{node}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
       else
         puts 'Creating day value..'
-        firebase.push("kpis/#{key}", date_data.merge(data))
+        puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
       end
     else
       puts 'Needs to initialize!'
-      firebase.push("kpis/#{key}", date_data.merge(data))
+      puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
     end
   end
 end

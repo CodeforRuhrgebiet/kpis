@@ -18,7 +18,7 @@ script_start_time = Time.now
 dc = DataCollector.new
 dc.fetch!
 dc.track!
-dc.save_to_file!
+# dc.save_to_file!
 
 puts 'DONE!!! :)'.blue
 script_end_time = Time.now
