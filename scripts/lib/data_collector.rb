@@ -56,14 +56,14 @@ class DataCollector
       if current_day_entry_res
         puts 'Updating day value..'
         node = current_day_entry_res.first
-        puts "#{firebase.update("kpis/#{key}/#{node}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
+        puts "#{firebase.update("kpis/#{key}/#{node}", date_data.merge(data), "auth=#{@firebase_jwt}")}".yellow
       else
         puts 'Creating day value..'
-        puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
+        puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}")}".yellow
       end
     else
       puts 'Needs to initialize!'
-      puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}").raw_body}".yellow
+      puts "#{firebase.push("kpis/#{key}", date_data.merge(data), "auth=#{@firebase_jwt}")}".yellow
     end
   end
 end
