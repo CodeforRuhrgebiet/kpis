@@ -4,47 +4,109 @@
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
     <script>
-      var ref = new Firebase("https://code-for-ruhrgebiet.firebaseio.com/kpis/meetup");
-      var query = ref.orderByChild("timestamp").limitToLast(100);
-      query.on("child_added", function(snapshot) {
-        console.log(snapshot.key());
-        console.log(snapshot.val());
-      });
+      var mailinglistDataPoints = [];
+      var meetupDataPoints = [];
+      var twitterDataPoints = [];
+      var facebookDataPoints = [];
+      var kpis = [
+        {
+          type: "spline",
+          showInLegend: true,
+          name: "on mailinglist",
+          color: "#22D790",
+          dataPoints: mailinglistDataPoints
+        },
+        {
+          type: "spline",
+          showInLegend: true,
+          name: "in meetup group",
+          color: "#E0393E",
+          dataPoints: meetupDataPoints
+        },
+        {
+          type: "spline",
+          showInLegend: true,
+          name: "Twitter followers",
+          color: "#79CCC9",
+          dataPoints: twitterDataPoints
+        },
+        {
+          type: "spline",
+          showInLegend: true,
+          name: "Facebook likes",
+          color: "#3b5998",
+          dataPoints: facebookDataPoints
+        }
+      ];
 
-
-    </script>
-    <script type="text/javascript">
       window.onload = function () {
-        var chart = new CanvasJS.Chart("chartContainer",
+        var overallChart = new CanvasJS.Chart('overallChart',
           {
             zoomEnabled: true,
-
-            title:{
-              text: "Meetup Group Members"
+            animationEnabled: true,
+            legend: {
+              horizontalAlign: "center",
+              verticalAlign: "top"
             },
-
-            data: [
-              {
-                type: "area",
-//                xValueType: "dateTime",
-                dataPoints: [
-                  { x: new Date(2016, 3, 13), y : 100 },
-                  { x: new Date(2016, 3, 11), y : 82 },
-                  { x: new Date(2016, 3, 4), y : 80 }
-                ]
-              }
-            ]
+            axisY: {
+              interlacedColor: "#F5F5F5",
+              gridThickness: 0
+            },
+            title:{ text: 'Code for Ruhrgebiet KPIs' },
+            toolTip: {
+              shared: "true"  //disable here.
+            },
+            data: kpis
           });
 
-        chart.render();
-      }
-    </script>
+        var mailinglistRef = new Firebase("https://code-for-ruhrgebiet.firebaseio.com/kpis/mailinglist");
+        var mailinglistQuery = mailinglistRef.orderByChild("timestamp").limitToLast(100);
+        mailinglistQuery.on("value", function(snapshot) {
+          snapshot.forEach(function(data) {
+            var xValue = new Date(data.val().year, data.val().month - 1, data.val().day);
+            var yValue = data.val().members_total_count;
+            mailinglistDataPoints.push({ x: xValue, y : yValue });
+          });
+          overallChart.render();
+        });
 
+        var meetupRef = new Firebase("https://code-for-ruhrgebiet.firebaseio.com/kpis/meetup");
+        var meetupQuery = meetupRef.orderByChild("timestamp").limitToLast(100);
+        meetupQuery.on("value", function(snapshot) {
+          snapshot.forEach(function(data) {
+            var xValue = new Date(data.val().year, data.val().month - 1, data.val().day);
+            var yValue = data.val().members_count;
+            meetupDataPoints.push({ x: xValue, y : yValue });
+          });
+          overallChart.render();
+        });
+
+        var twitterRef = new Firebase("https://code-for-ruhrgebiet.firebaseio.com/kpis/twitter");
+        var twitterQuery = twitterRef.orderByChild("timestamp").limitToLast(100);
+        twitterQuery.on("value", function(snapshot) {
+          snapshot.forEach(function(data) {
+            var xValue = new Date(data.val().year, data.val().month - 1, data.val().day);
+            var yValue = data.val().followers_count;
+            twitterDataPoints.push({ x: xValue, y : yValue });
+          });
+          overallChart.render();
+        });
+
+        var facebookRef = new Firebase("https://code-for-ruhrgebiet.firebaseio.com/kpis/facebook");
+        var facebookQuery = facebookRef.orderByChild("timestamp").limitToLast(100);
+        facebookQuery.on("value", function(snapshot) {
+          snapshot.forEach(function(data) {
+            var xValue = new Date(data.val().year, data.val().month - 1, data.val().day);
+            var yValue = data.val().likes_count;
+            facebookDataPoints.push({ x: xValue, y : yValue });
+          });
+          overallChart.render();
+        });
+      }
+
+    </script>
   </head>
   <body>
-    lalala
-
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
+    <div id="overallChart" style="height: 300px; width: 100%;"></div>
   </body>
 </html>
