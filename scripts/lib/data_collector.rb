@@ -28,10 +28,6 @@ class DataCollector
     push_to_firebase!(firebase, 'facebook', @facebook)
   end
 
-  def save_to_file!
-    File.open('./README.md', 'w') { |f| f.write(ERB.new(File.read('./templates/readme.md.erb')).result(binding)) }
-  end
-
   private
 
   def current_day_entry(data)

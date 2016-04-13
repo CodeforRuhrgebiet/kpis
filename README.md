@@ -1,13 +1,8 @@
 # Code for Ruhrgebiet KPIs
 
-Auf der Mailingliste eingetragen: **29**
+[Click here to open](http://codeforruhrgebiet.github.io/kpis/)
 
-Mitglieder in der Meetup-Gruppe: **44**
 
-Twitter Followers: **55**
+-
 
-Facebook Page Likes: **16**
-
----
-
-*wird alle 5 Minuten aktualisiert*
+_All data is stored on firebase: https://code-for-ruhrgebiet.firebaseio.com/kpis/.json?print=pretty_
