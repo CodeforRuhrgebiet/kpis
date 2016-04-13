@@ -1,4 +1,6 @@
 config.yml
 .bundle
 vendor
-
+_site
+.sass-cache
+.jekyll-metadata

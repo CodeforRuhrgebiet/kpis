@@ -1,0 +1,20 @@
+title: "Code for Ruhrgebiet KPIs"
+description: "KPIs zum OK Lab Ruhrgebiet"
+url: "http://codeforruhrgebiet.github.io/kpis/"
+baseurl: "" # the subpath of your site, e.g. /blog
+github:
+  url: "http://codeforruhrgebiet.github.io/kpis"
+
+# Build settings
+markdown: kramdown
+
+exclude:
+  - "scripts"
+  - "CNAME"
+  - "CONTRIBUTING.md"
+  - "Gemfile*"
+  - "mission"
+  - "README.md"
+
+sass:
+  style: :compressed
