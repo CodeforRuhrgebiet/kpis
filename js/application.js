@@ -4,28 +4,28 @@ var twitterDataPoints = [];
 var facebookDataPoints = [];
 var kpis = [
   {
-    type: "spline",
+    type: "line",
     showInLegend: true,
     name: "on mailinglist",
     color: "#22D790",
     dataPoints: mailinglistDataPoints
   },
   {
-    type: "spline",
+    type: "line",
     showInLegend: true,
     name: "in meetup group",
     color: "#E0393E",
     dataPoints: meetupDataPoints
   },
   {
-    type: "spline",
+    type: "line",
     showInLegend: true,
     name: "Twitter followers",
     color: "#79CCC9",
     dataPoints: twitterDataPoints
   },
   {
-    type: "spline",
+    type: "line",
     showInLegend: true,
     name: "Facebook likes",
     color: "#3b5998",
@@ -42,6 +42,7 @@ window.onload = function () {
         horizontalAlign: "center",
         verticalAlign: "top"
       },
+      theme: "theme2",
       axisY: {
         interlacedColor: "#F5F5F5",
         gridThickness: 0
