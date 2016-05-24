@@ -177,6 +177,6 @@ DEPENDENCIES
   jekyll
   json
   mechanize
-  mime-types (~> 2.99.2)
+  mime-types (= 2.99.2)
   nokogiri
   twitter
